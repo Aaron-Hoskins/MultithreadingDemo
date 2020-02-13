@@ -1,0 +1,47 @@
+- Into to Multithreading in Android
+    - What is multithreading
+        - Running more than one operation
+    - 2 kinds
+        - Synchronous operations
+            - One after another
+                O1 ----> O2 -----> O3 ---> O1
+        - Asynchronous Operations (Parallel Operations/Threading)
+
+                     ------ O2 ----
+                O1  -|             |- O1
+                     ------ O3 ----
+
+     - Why do we even need to worry about this?
+        - In android, we have what is called the Main(UI) Thread
+        - All operations not pertaining to the UI should be kept off
+            of the Main Thread
+            - Examples of operations that should NOT be ran on the main thread
+                - Database queries
+                - Long running operations (Services)
+                - Network (API) calls
+                    - If you even try to make a network call from the main thread, you
+                        will get a runtime exception (NetworkCallOnMainThreadException)
+    - Common Issues (Conditions) that arise with multithreading
+        - Deadlock Conditions
+        - Race Conditions
+
+    - Way of MultiThreading in android
+        - Java Native Ways
+            - Thread/Runnables
+            - ThreadPools
+        - Android Native Ways
+            - Loopers/Handlers
+            - Loaders (deprecated)
+            - AsyncTask (deprecated)
+        - Kotlin Native ways
+            - Coroutines
+        - Third Party Lib:
+            - RxJava
+
+- Debugging
+    - LogCat
+        - Log.d    --- Debugging Logs (Not in production)                  --- Black
+        - Log.i    --- Application Information (in Production)             --- Black
+        - Log.w    --- Application Warnings                                --- Black
+        - Log.e    --- Application Exceptions(Errors)                      --- RED
+        - Log.wtf  --- Used for (what should be) unreachable conditions    --- RED
